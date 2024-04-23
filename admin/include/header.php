@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
-    style="background-color: #fff; padding-left: 15px; padding-right: 15px;">
+    style="background-color: #fff; padding-left: 15px; padding-right: 15px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">
     <a class="navbar-brand" href="">
         <img src="../../img/logo.png" alt="" class="navigation__logo h-20">
     </a>
@@ -28,7 +28,7 @@
             <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"
                     aria-hidden="true"></i></button>
         </form>
-        <div class="admin_section d-flex align-items-center ms-3">
+        <div class="admin_section d-flex align-items-center ms-lg-3">
             <a class="me-3" href="#">
                 <i class="fas fa-fw fa-crown"></i>
                 Admin

@@ -31,3 +31,9 @@ CREATE TABLE Admin (
     address VARCHAR(255),
     FOREIGN KEY (id) REFERENCES Account(id)
 );
+
+INSERT INTO Account (username, password, role, email)
+VALUES ('john_doe', 'password123', 'user', 'john.doe@example.com');
+
+INSERT INTO User (id, name, sex, dateofbirth, phone, address)
+VALUES (1, 'John Doe', 'Male', '1990-05-15', '0123456789', '123 Main Street');

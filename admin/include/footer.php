@@ -1,4 +1,4 @@
-<footer class="grid grid-cols-4 grid-rows-4 gap-4 text-center text-white bg-yellow-400 rounded-lg ">
+<footer class="grid grid-cols-4 grid-rows-4 gap-4 text-center text-white bg-yellow-400">
     <div class="col-start-1 col-span-4 ">
         <h4>BK Milk Tea</h4>
     </div>

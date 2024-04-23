@@ -2,6 +2,9 @@
 // Kết nối đến cơ sở dữ liệu
 require_once '../../config.php';
 
+$sql = "SELECT * FROM User";
+$users = mysqli_query($link, $sql);
+
 ?>
 
 <html lang="en">
@@ -18,13 +21,71 @@ require_once '../../config.php';
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-self">
         <?php
         include '../include/header.php'
         ?>
-
-        <h1> Users </h1>
-
+        <div class="body my-5 container-fluid">
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr class="table-primary text-center">
+                        <th scope="col">STT</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">SĐT</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <?php
+                if ($users->num_rows > 0) {
+                    $count = 1;
+                    while ($row = $users->fetch_assoc()) {
+                ?>
+                        <tbody>
+                            <tr>
+                                <th class='align-middle text-center' scope="row"><?php echo $count ?></th>
+                                <td class='align-middle text-center'><?php echo $row["name"] ?></td>
+                                <td class='align-middle'><?php echo $row["sex"] ?></td>
+                                <td class='align-middle text-center'><?php echo $row["dateofbirth"] ?></td>
+                                <td class='align-middle'><?php echo $row["phone"] ?></td>
+                                <td class='align-middle text-center'><?php echo $row["address"] ?></td>
+                                <td class='align-middle'>
+                                    <div class="d-inline-flex">
+                                        <button type='button' class='btn-delete btn btn-danger m-1' data-bs-id='<?php echo $row['user_id'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'><i class="fas fa-trash-can"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                <?php
+                        $count++;
+                    };
+                }
+                ?>
+            </table>
+            <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Xoá người dùng</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="delete.php" method="post">
+                            <div class="modal-body">
+                                <input type="hidden" name="id" />
+                                <p>Bạn chắc chắn muốn xoá?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary btn-outline-light" type="button" data-bs-dismiss="modal">Đóng
+                                    lại</button>
+                                <button class="btn btn-danger btn-outline-light" type="submit">Xác nhận</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php
         include '../include/footer.php'
         ?>
