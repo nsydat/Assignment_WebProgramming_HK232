@@ -19,7 +19,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="../users/index.php">Người dùng</a></li>
-                    <li><a class="dropdown-item" href="#">Sản phẩm</a></li>
+                    <li><a class="dropdown-item" href="../products/index.php">Sản phẩm</a></li>
                 </ul>
             </li>
         </ul>
