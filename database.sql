@@ -41,17 +41,9 @@ CREATE TABLE Product (
     name VARCHAR(100) NOT NULL DEFAULT '',
     price FLOAT NOT NULL CHECK(price >= 0),
     description LONGTEXT DEFAULT '',
+    image_url VARCHAR(300),
     category_id INT,
     FOREIGN KEY (category_id) REFERENCES Categories(id)
-);
-
-CREATE TABLE Product_images (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    image_url VARCHAR(300),
-    FOREIGN KEY (product_id) REFERENCES Product(id),
-    CONSTRAINT fk_product_images_product_id
-        FOREIGN KEY (product_id) REFERENCES Product(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Orders (
