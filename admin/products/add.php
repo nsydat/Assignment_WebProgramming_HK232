@@ -59,7 +59,7 @@ $users = mysqli_query($link, $sql);
                             <div class="d-flex">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Hình</label>
-                                    <input class="form-control" name="images" type="file" id="formFile">
+                                    <input class="form-control" name="images" type="file" id="formFile" multiple="multiple">
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-success w-100 mt-2" value="Cập nhật" name="add">
