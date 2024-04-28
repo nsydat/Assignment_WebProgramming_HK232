@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS BKMilkTea;
+
 CREATE DATABASE BKMilkTea;
 USE BKMilkTea;
 
@@ -83,7 +85,6 @@ CREATE TABLE Order_details (
     FOREIGN KEY (product_id) REFERENCES Product(id)
 );
 
------------------------------------------------------------------------------------
 INSERT INTO Account (username, password, role, email)
 VALUES ('admin', 'admin123', 'admin', 'admin@gmail.com');
 
@@ -146,5 +147,5 @@ INSERT INTO Product (name, price, description, category_id) VALUES
 INSERT INTO Account (username, password, role, email)
 VALUES ('john_doe', 'password123', 'user', 'john.doe@example.com');
 
-INSERT INTO User (id, name, sex, dateofbirth, phone, address)
+INSERT INTO Users (id, name, sex, dateofbirth, phone, address)
 VALUES (1, 'John Doe', 'Male', '1990-05-15', '0123456789', '123 Main Street');

@@ -1,7 +1,7 @@
 <?php
 require_once '../../config.php';
 
-$sql = "SELECT * FROM User";
+$sql = "SELECT * FROM Users";
 $users = mysqli_query($link, $sql);
 
 ?>
@@ -46,10 +46,6 @@ $users = mysqli_query($link, $sql);
                             <div class="mb-3">
                                 <label for="price" class="form-label">Giá</label>
                                 <input type="number" class="form-control" name="price" value="" id="price" placeholder="Nhập giá bán của sản phẩm">
-                            </div>
-                            <div class="mb-3">
-                                <label for="price_sale" class="form-label">Giá giảm</label>
-                                <input type="number" class="form-control" name="priceSale" value="" id="price_sale" placeholder="Giảm giá">
                             </div>
                             <div class="mb-3">
                                 <label for="desc" class="form-label">Mô tả</label>

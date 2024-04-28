@@ -1,7 +1,7 @@
 <?php
 require_once '../../config.php';
 
-$sql = "SELECT * FROM User";
+$sql = "SELECT * FROM Users";
 $users = mysqli_query($link, $sql);
 
 ?>
