@@ -63,7 +63,7 @@ $users = mysqli_query($link, $sql);
                                 <img src="https://images.unsplash.com/photo-1620360289473-bfafadc16c57?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="200px" alt="">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Hình</label>
-                                    <input class="form-control" name="images" type="file" id="formFile" multiple="multiple">
+                                    <input class="form-control" name="images" type="file" id="formFile">
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-primary w-100 mt-2" value="Cập nhật" name="update">
