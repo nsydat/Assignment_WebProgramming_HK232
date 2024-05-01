@@ -139,5 +139,39 @@ INSERT INTO Product (name, price, description, category_id) VALUES
 INSERT INTO Account (username, password, role, email)
 VALUES ('john_doe', 'password123', 'user', 'john.doe@example.com');
 
+-- Account for User with id = 3
+INSERT INTO Account (username, password, role, email)
+VALUES ('user3', 'password456', 'user', 'user2@example.com');
+
+-- Account for User with id = 4
+INSERT INTO Account (username, password, role, email)
+VALUES ('user4', 'password789', 'user', 'user3@example.com');
+
+-- Account for User with id = 5
+INSERT INTO Account (username, password, role, email)
+VALUES ('user5', 'passwordabc', 'user', 'user4@example.com');
+
+-- Account for User with id = 6
+INSERT INTO Account (username, password, role, email)
+VALUES ('user6', 'passworddef', 'user', 'user5@example.com');
+
+
 INSERT INTO Users (id, name, sex, dateofbirth, phone, address)
-VALUES (1, 'John Doe', 'Male', '1990-05-15', '0123456789', '123 Main Street');
+VALUES (2, 'John Doe', 'Nam', '1990-05-15', '0123456789', '123 Đường Hùng Vương');
+
+-- User with id = 3
+INSERT INTO Users (id, name, sex, dateofbirth, phone, address)
+VALUES (3, 'Jane Smith', 'Nữ', '1995-08-25', '0987654321', '123 Đường Lê Lợi');
+
+-- User with id = 4
+INSERT INTO Users (id, name, sex, dateofbirth, phone, address)
+VALUES (4, 'David Johnson', 'Nam', '1988-03-12', '0123456789', '456 Phố Trần Hưng Đạo');
+
+-- User with id = 5
+INSERT INTO Users (id, name, sex, dateofbirth, phone, address)
+VALUES (5, 'Emily Davis', 'Nữ', '1992-11-30', '0369852147', '789 Ngõ Nguyễn Huệ');
+
+-- User with id = 6
+INSERT INTO Users (id, name, sex, dateofbirth, phone, address)
+VALUES (6, 'Michael Wilson', 'Nam', '1983-06-17', '0357924681', '101 Đường Võ Thị Sáu');
+

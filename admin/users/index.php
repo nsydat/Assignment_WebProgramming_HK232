@@ -17,6 +17,7 @@ $users = mysqli_query($link, $sql);
     <link rel="stylesheet" href="../include/header-footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -52,7 +53,7 @@ $users = mysqli_query($link, $sql);
                                 <td class='align-middle text-center'><?php echo $row["address"] ?></td>
                                 <td class='align-middle'>
                                     <div class="d-inline-flex">
-                                        <button type='button' class='btn-delete btn btn-danger m-1' data-bs-id='<?php echo $row['user_id'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'><i class="fas fa-trash-can"></i></button>
+                                        <button type='button' class='btn-delete btn btn-danger m-1' data-bs-id='<?php echo $row['id'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'><i class="fas fa-trash-can"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -89,6 +90,13 @@ $users = mysqli_query($link, $sql);
         include '../include/footer.php'
         ?>
     </div>
+    <script>
+        $(".btn-delete").click(function(e) {
+            const id = this.getAttribute('data-bs-id')
+            $("#Delete input[name='id']").val(id);
+            // $('#Delete').modal('show');
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
