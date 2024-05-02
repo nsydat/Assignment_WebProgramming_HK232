@@ -1,6 +1,6 @@
 <?php
 
-$rootPath = '/Assignment_WebProgramming_HK232/admin/';
+$rootPath = '/Assignment_WebProgramming_HK232/admin';
 
 require_once '../../config.php';
 
@@ -33,16 +33,16 @@ require_once '../../config.php';
         ?>
         <div class="body my-5 container-fluid">
             <div class="row mb-2 text-center">
-                <div class="h3 text-primary">Danh sách sản phẩm</div>
+                <div class="h3 text-primary">Quản lý sản phẩm</div>
             </div>
             <div class="row mb-2">
                 <div class="col-xl-3 col-md-4 col-sm-12">
-                    <a href="./add.php" class="ms-5 btn btn-primary">Thêm sản phẩm</a>
+                    <a href="./add.php" class="ms-5 mb-3 btn btn-primary">Thêm sản phẩm</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="container mb-5">
+                    <div class="container-fluid mb-5">
                         <div class="row">
                             <?php
                             if ($products->num_rows > 0) {
@@ -89,7 +89,7 @@ require_once '../../config.php';
                                                     <td class='align-middle text-center'><?php echo $row['category_name'] ?></td>
                                                     <td class='align-middle text-center'>
                                                         <a href="./update.php?id=<?= $row['id'] ?>" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                                                        <a href="./update.php?id=<?= $row['id'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                                        <a href="./delete.php?id=<?= $row['id'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php
