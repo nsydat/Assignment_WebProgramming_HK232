@@ -11,11 +11,15 @@ if (isset($_GET['id'])) {
         exit;
     }
     $productId = $_GET['id'];
+    $sqlFindImg = "SELECT image_url FROM product WHERE id = '$productId'";
+    $ketQua = $link->query($sqlFindImg);
     $sqlDelete = "DELETE FROM Product WHERE id = '$productId'";
     $result = $link->query($sqlDelete);
     // TODO: Test later
     if ($link->affected_rows > 0) {
-        unlink("../../img/products/" . $productId . ".jpg");
+        $ketQua = $ketQua->fetch_array();
+        $images = $ketQua['image_url'];
+        unlink("../../img/products/" . $images);
         $link->close();
         setcookie('thongBao', 'Đã xóa sản phẩm thành công', time() + 5);
         header("location: index.php");
