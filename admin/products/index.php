@@ -38,7 +38,7 @@ require_once '../../config.php';
             </div>
             <div class="row mb-2">
                 <div class="col-xl-3 col-md-4 col-sm-12">
-                    <a href="./add.php" class="ms-5 mb-3 btn btn-primary">Thêm sản phẩm</a>
+                    <a href="./add.php" class="ms-3 mb-3 btn btn-primary">Thêm sản phẩm</a>
                 </div>
             </div>
             <div class="row">
