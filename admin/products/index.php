@@ -90,7 +90,7 @@ require_once '../../config.php';
                                                     <td class='align-middle text-center'><?php echo $row['category_name'] ?></td>
                                                     <td class='align-middle text-center'>
                                                         <a href="./update.php?id=<?= $row['id'] ?>" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                                                        <a href="./delete.php?id=<?= $row['id'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                                        <a href="javascript:void(0)" onclick="openDeleteModal(<?php echo $row['id'] ?>)" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -152,12 +152,71 @@ require_once '../../config.php';
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa sản phẩm này không?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <a href="#" id="confirmDeleteButton" class="btn btn-danger">Xóa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="notificationMessage">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         <?php
         include '../include/footer.php'
         ?>
     </div>
+    <script>
+        function openDeleteModal(id) {
+            var deleteUrl = 'delete.php?id=' + id;
+            document.getElementById('confirmDeleteButton').setAttribute('href', deleteUrl);
+            var deleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+            deleteModal.show();
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.cookie.indexOf('thongBao') !== -1) {
+                var thongBao = decodeURIComponent(document.cookie.replace(/(?:(?:^|.*;\s*)thongBao\s*=\s*([^;]*).*$)|^.*$/, "$1"));
+
+                var notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                notificationModal.show();
+
+                document.getElementById('notificationMessage').innerText = thongBao;
+
+                document.cookie = "thongBao=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+        });
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

@@ -1,9 +1,34 @@
 <?php
+session_start();
+ob_start();
+$rootPath = '/Assignment_WebProgramming_HK232/admin/';
+
 require_once '../../config.php';
-
-$sql = "SELECT * FROM Users";
-$users = mysqli_query($link, $sql);
-
+if (isset($_POST['add'])) {
+    if ($_FILES['images']['error'] > 0) {
+        $tb = 'Lỗi: lỗi file hình - mã lỗi:' . $_FILES['images']['error'] . '<br>';
+    } else {
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
+        $price = mysqli_real_escape_string($conn, $_POST['price']);
+        $priceSale = mysqli_real_escape_string($conn, $_POST['priceSale']);
+        $description = mysqli_real_escape_string($conn, $_POST['description']);
+        $categoryId = mysqli_real_escape_string($conn, $_POST['categoryId']);
+        $images = mysqli_real_escape_string($conn, $_FILES['images']['name']);
+        if ($name == '' || $quantity == '' || $description == '' || $price == '' || $priceSale == '' || $categoryId == '' || $images == '') {
+            $tb .= 'Bạn chưa nhập đủ các trường' . '<br/>';
+        } else {
+            $sqlInsert = "INSERT INTO product (name, category_id, description, images, quantity, price, price_sale) 
+                    VALUES ('$name', '$categoryId', '$description', '$images', '$quantity', '$price', '$priceSale')";
+            $conn->query($sqlInsert);
+            if (!file_exists("../../public/img/products/" . $images))
+                move_uploaded_file($_FILES["images"]["tmp_name"], "../../public/img/products/" . $images);
+            $conn->close();
+            setcookie('thongBao', 'Đã thêm sản phẩm thành công', time() + 5);
+            header("location: index.php");
+        }
+    }
+}
 ?>
 
 <html lang="en">
