@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     settype($_GET['id'], 'int');
     if ($_GET['id'] == 0) {
         echo "ID sản phẩm không hợp lệ.";
-        exit;
+        exit();
     }
     $productId = $_GET['id'];
     $sqlFindImg = "SELECT image_url FROM product WHERE id = '$productId'";

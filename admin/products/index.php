@@ -1,6 +1,8 @@
 <?php
 
 $rootPath = '/Assignment_WebProgramming_HK232/admin';
+$currentPage = 1;
+$totalPage = 1;
 
 require_once '../../config.php';
 
