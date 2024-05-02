@@ -80,8 +80,8 @@ if (isset($_GET["id"])) {
                                     <option value="4">Đang giao</option>
                                     <option value="5">Huỷ đơn   </option>
                                 </select>
+                                <input type="submit" class="btn btn-primary w-100 mt-2" value="Cập nhật" name="update">
                             </div>
-                            <input type="submit" class="btn btn-primary mt-2" value="Cập nhật" name="update">
                         </form>
                     </div>
                     <div class="col-2"></div>

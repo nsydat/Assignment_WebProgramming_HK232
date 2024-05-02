@@ -52,10 +52,10 @@ $order = mysqli_query($link, $sql);
                                 <td class='align-middle'>
                                     <div class="d-inline-flex">
                                         <!-- nút view -->
-                                        <a href="order_detail.php?id=<?php echo $row['id'] ?>" class="btn-view btn btn-primary m-1"><i class="fa-sharp fa-solid fa-eye"></i></a>
+                                        <a href="order_detail.php?id=<?php echo $row['id'] ?>" class="btn-view btn btn-warning m-1"><i class="fa-sharp fa-solid fa-eye"></i></a>
 
                                         <!-- nút edit -->
-                                        <a href="edit.php?id=<?php echo $row['id'] ?>" class="btn-edit btn btn-warning m-1"><i class="fa-solid fa-pencil"></i></a>
+                                        <a href="edit.php?id=<?php echo $row['id'] ?>" class="btn-edit btn btn-primary m-1"><i class="fa-solid fa-pencil"></i></a>
                         
                                         <!-- delete -->
                                         <button type='button' class='btn-delete btn btn-danger m-1' data-bs-id='<?php echo $row['id'] ?>' data-bs-target='#Delete' data-bs-toggle='modal'><i class="fas fa-trash-can"></i></button>
