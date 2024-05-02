@@ -1,8 +1,8 @@
 <?php
-require_once '../../config.php';
 
-$sql = "SELECT * FROM Users";
-$users = mysqli_query($link, $sql);
+$rootPath = '/Assignment_WebProgramming_HK232/admin/';
+
+require_once '../../config.php';
 
 ?>
 
@@ -20,6 +20,13 @@ $users = mysqli_query($link, $sql);
 </head>
 
 <body>
+
+    <?php
+    $sqlShowProducts = "SELECT p.id, p.name, p.price, p.description, c.name AS category_name 
+    FROM product p 
+    INNER JOIN categories c ON p.category_id = c.id";
+    $products = $link->query($sqlShowProducts);
+    ?>
     <div class="container-self">
         <?php
         include '../include/header.php'
@@ -37,61 +44,107 @@ $users = mysqli_query($link, $sql);
                 <div class="col-12">
                     <div class="container mb-5">
                         <div class="row">
-                            <div class="col-12 mb-3">
-                                <table class="table">
-                                    <thead class="table-primary">
-                                        <tr>
-                                            <th scope="col">#id</th>
-                                            <th scope="col">Tên sản phẩm</th>
-                                            <th scope="col">Giá</th>
-                                            <th scope="col">Mô tả</th>
-                                            <th scope="col">Hàng tồn</th>
-                                            <th scope="col">Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Sản phẩm A</td>
-                                            <td>1000000</td>
-                                            <td>Trà sữa trân châu truyền thống</td>
-                                            <td>10</td>
-                                            <td>
-                                                <a href="./update.php?id=1" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="./delete.php?id=1" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Sản phẩm B</td>
-                                            <td>2000000</td>
-                                            <td>Trà đào cam sả thanh mát</td>
-                                            <td>20</td>
-                                            <td>
-                                                <a href="./update.php?id=2" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="./delete.php?id=2" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <?php
+                            if ($products->num_rows > 0) {
+                                $totalProducts = $products->num_rows;
+                                $currentPage = 1;
+                                if (isset($_GET['page'])) {
+                                    settype($_GET['page'], 'int');
+                                    $currentPage = $_GET['page'];
+                                }
+                                $limit = 6;
+                                $totalPage = ceil($totalProducts / $limit);
+
+                                if ($currentPage > $totalPage) {
+                                    $currentPage = $totalPage;
+                                } elseif ($currentPage < 1) {
+                                    $currentPage = 1;
+                                }
+
+                                $start = ($currentPage - 1) * $limit;
+                                $sqlShowProducts = $sqlShowProducts . " LIMIT $start, $limit";
+                                $products = $link->query($sqlShowProducts);
+                            ?>
+                                <div class="col-12 mb-3">
+                                    <table class="table">
+                                        <thead class="table-primary text-center">
+                                            <tr>
+                                                <th scope="col">#id</th>
+                                                <th scope="col">Tên sản phẩm</th>
+                                                <th scope="col">Giá</th>
+                                                <th scope="col">Mô tả</th>
+                                                <th scope="col">Loại đồ uống</th>
+                                                <th scope="col">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($row = $products->fetch_assoc()) {
+                                            ?>
+                                                <tr>
+                                                    <th class='align-middle text-center' scope="row"><?php echo $row['id'] ?></th>
+                                                    <td class='align-middle text-center'><?php echo $row['name'] ?></td>
+                                                    <td class='align-middle text-center'><?php echo $row['price'] ?></td>
+                                                    <td class='align-middle text-center'><?php echo $row['description'] ?></td>
+                                                    <td class='align-middle text-center'><?php echo $row['category_name'] ?></td>
+                                                    <td class='align-middle text-center'>
+                                                        <a href="./update.php?id=<?= $row['id'] ?>" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                                        <a href="./update.php?id=<?= $row['id'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php
+                            } else {
+                                echo '<div class="alert alert-warning" role="alert"><i class="far fa-circle"></i> Không tìm thấy sản phẩm nào</div>';
+                            }
+                            $link->close();
+                            ?>
                         </div>
                         <div class="row">
                             <!-- Pagination -->
                             <nav class="mt-3">
                                 <ul class="pagination pagination-lg d-flex justify-content-center">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">&lsaquo; Prev</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <span rel="prev" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">1</span>
-                                    </li>
-                                    <li class="page-item">
-                                        <a data-remote="true" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">Next &rsaquo;</a>
-                                    </li>
+                                    <?php
+                                    if ($currentPage > 1 && $totalPage > 1) {
+                                    ?>
+                                        <li class="page-item">
+                                            <a href="<?php echo $rootPath ?>/products/index.php?page=<?php echo ($currentPage - 1); ?>" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">&lsaquo; Prev</a>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <?php
+                                    for ($i = 1; $i <= $totalPage; $i++) {
+                                        if ($i == $currentPage) {
+                                    ?>
+                                            <li class="page-item active">
+                                                <span rel="prev" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true"><?php echo $i ?></span>
+                                            </li>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <li class="page-item">
+                                                <a data-remote="true" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="<?php echo $rootPath ?>/products/index.php?page=<?php echo $i ?>"><?php echo $i ?></a>
+                                            </li>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($currentPage < $totalPage && $totalPage > 1) {
+                                    ?>
+                                        <li class="page-item">
+                                            <a href="<?php echo $rootPath; ?>/products/index.php?page=<?php echo ($currentPage + 1) ?>" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" data-remote="true">Next &rsaquo;</a>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
                             </nav>
                         </div>
