@@ -27,7 +27,8 @@ require_once '../../config.php';
     <?php
     $sqlShowProducts = "SELECT p.id, p.name, p.price, p.description, c.name AS category_name 
     FROM product p 
-    INNER JOIN categories c ON p.category_id = c.id";
+    INNER JOIN categories c ON p.category_id = c.id
+    ORDER BY p.id";
     $products = $link->query($sqlShowProducts);
     ?>
     <div class="container-self">
